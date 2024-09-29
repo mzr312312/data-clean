@@ -15,18 +15,18 @@ import os
 
 # 以下为正式代码
 
-# 指定Excel文件的完整路径
+# 指定需要读取数据的Excel文件的完整路径
 excel_file_path = r"C:\Users\JA085914\Desktop\PY\数据处理\01.合并数据表.xlsx"
 
 # 读取Excel文件
 with pd.ExcelFile(excel_file_path) as xls:
     # 读取“设备类型清单”
-    df_equipment = pd.read_excel(xls, sheet_name="设备类型清单", usecols=[0, 4], header=0)
+    df_equipment = pd.read_excel(xls, sheet_name="设备类型清单", usecols=[0, 4], header=0) #A列是0，B列是1，以此类推
     df_equipment.columns = ['设备/仪表原有编号（点表）', '设备类型']
 
     # 读取“数据点清单”，共读取4列
-    df_points = pd.read_excel(xls, sheet_name="数据点清单", usecols=[1, 2, 3], header=0)
-    df_points.columns = ['数据点后缀', '设备类型', '采集点特征字段',]  # 添加一个临时列名，用于后续处理
+    df_points = pd.read_excel(xls, sheet_name="数据点清单", usecols=[1, 2, 8], header=0) #A列是0，B列是1，以此类推
+    df_points.columns = ['设备类型', '采集点特征字段','数据点后缀', ]  # 添加一个临时列名，用于后续处理
 
 # 将设备类型转换为一致的格式以便匹配
 df_equipment['设备类型'] = df_equipment['设备类型'].str.strip()
