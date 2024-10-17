@@ -12,7 +12,7 @@ import os
 # 初始化客户端
 client = OpenAI(
     # 请替换为你的API密钥
-    api_key="sk-Ilfv84vELSOfknT1Cb827a6eC17843268a3f894f1dE898C7",
+    api_key="sk-8H4ypTvnDgST3uNypFS3XYmmo57VOfnjGFW2pqjcG2dtLwVS",
     # 使用便携AI聚合API的入口地址
     base_url="https://api.bianxie.ai/v1"
 )
@@ -30,7 +30,8 @@ def download_image(url, file_name):
 # 创建DALL·E 3图像生成请求
 response = client.images.generate(
     model="dall-e-3",  # 指定使用的DALL·E 3模型
-    prompt="请生成一张图书馆书架上一排书籍的特写图片。画面中应该展示一整排紧密排列的书籍，书籍的颜色和厚度各不相同，但整体色调和谐统一。这些书籍应该看起来被妥善保存，书脊上的文字清晰可见，显示出它们是经过精心整理和归档的信息资源。背景可以略微模糊，让观者的注意力集中在这一排书籍上。光线柔和均匀地洒在书籍上，营造出一种安静而充满知识氛围的感觉。这样的图像用来代表一个有序且丰富的档案库。",
+    prompt="请帮我制作一个网站logo，六边形，黑底白字，字为艺术字体M，需要整体看起来很有艺术设计感，M这个字需要让人一眼就能看出是字母M，但同时还要有艺术感，在很小的图标上也能看清楚，不需要额外的背景色之类的东西"
+    ,
     n=1,  # 生成一张图像
     size="1024x1024"  # 图像大小
 )

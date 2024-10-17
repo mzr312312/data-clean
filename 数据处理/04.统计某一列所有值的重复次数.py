@@ -1,6 +1,6 @@
 import pandas as pd
 from datetime import datetime
-#
+# 引入时间模块，用于生成文件名
 # 定义变量
 # 定义读取的数据源文件路径
 input_file_path = r'C:\Users\JA085914\Desktop\PY\数据处理\04.统计某一列所有值的重复次数-模板.xlsx'

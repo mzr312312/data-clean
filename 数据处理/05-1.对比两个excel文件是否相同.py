@@ -8,8 +8,8 @@ from datetime import datetime
 
 # 自定义变量
 # 定义需要对比的两个Excel文件路径
-file1_path = r'C:\Users\JA085914\Desktop\PY\多文件对比\【基地审核】设备编码清单（石家庄-环境监测系统）.xlsx'
-file2_path = r'C:\Users\JA085914\Desktop\PY\多文件对比\To-Internal_设备编码清单_污水处理_SJ.xlsx'
+file1_path = r'C:\Users\JA085914\Desktop\PY\数据处理\11.根据已有成果，生成标准字典（特征字段-数据点映射）\标准字典（特征字段-数据点映射）.xlsx'
+file2_path = r'C:\Users\JA085914\Desktop\PY\数据处理\11.根据已有成果，生成标准字典（特征字段-数据点映射）\标准字典（特征字段-数据点映射） - 副本.xlsx'
 # 定义需要标黄的颜色
 highlight_color = 'FFFF00'  # 标黄的颜色
 # 定义需要在哪个工作簿上进行标黄（二选一）

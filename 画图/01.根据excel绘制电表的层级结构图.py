@@ -27,7 +27,7 @@ import datetime
 
 
 # 可修改的配置
-file_path = r'C:\Users\JA085914\Depython3 -m pip install --upgrade radicale单.xlsx'  # Excel 文件路径
+file_path = r'C:\Users\JA085914\单.xlsx'  # Excel 文件路径
 sheet_name = '电池车间'  # 需要读取的 sheet 名称
 
 # 定义颜色
