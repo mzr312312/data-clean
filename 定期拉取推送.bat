@@ -1,6 +1,7 @@
 @echo off
 :: 设置仓库目录
 set REPO_DIR=D:\PycharmProjects\pythonProject
+
 cd /d %REPO_DIR%
 
 echo start to Synchronize the code...
