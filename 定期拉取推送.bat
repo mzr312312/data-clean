@@ -3,7 +3,7 @@
 set REPO_DIR=D:\PycharmProjects\pythonProject
 cd /d %REPO_DIR%
 
-echo 开始同步代码...
+echo start to Synchronize the code...
 
 :: 添加所有更改到暂存区
 git add .
@@ -15,28 +15,28 @@ set TIMESTAMP=%TIMESTAMP: =0%
 :: 提交更改
 git commit -m "Auto commit at %TIMESTAMP%"
 if %errorlevel% neq 0 (
-    echo 没有新的更改需要提交。
+    echo no new change to be committed
 ) else (
-    echo 已提交本地更改。
+    echo Local changes have been committed
 )
 
 :: 拉取远程更改并与本地合并
 git pull origin main
 if %errorlevel% neq 0 (
-    echo 拉取远程更改时出错，请手动解决冲突。
+    echo Error while pulling remote changes, please resolve the conflict manually
     exit /b 1
 )
 
 :: 推送本地提交到远程仓库
 git push origin main
 if %errorlevel% neq 0 (
-    echo 推送到远程仓库时出错，请检查网络连接或远程仓库状态。
+    echo An error occurred while pushing to the remote repository. Check the network connection or remote repository status
     exit /b 1
 ) else (
-    echo 同步成功！
+    echo Synchronization succeeded
 )
 
 :: 5秒倒计时
-echo 脚本将在5秒后退出...
+echo The script will exit after 5 seconds...
 timeout /t 5 /nobreak >nul
 exit
