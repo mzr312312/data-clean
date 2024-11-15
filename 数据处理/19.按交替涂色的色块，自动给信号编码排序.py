@@ -1,51 +1,60 @@
 import pandas as pd
 from openpyxl import Workbook
 from datetime import datetime
-# 说明：
-# 此脚本用于给一列数据点编码，按照色块，依次编号的功能，目的是用于数据点编码清单的编写
-# 我需要在源文件中填写一列（不要修改列名，否则认不出来），如下面的第一列
-# 填写的列需要带有色块（按设备类型分类的）
-# 这样，系统会识别色块，明确每个设备类型下，有哪些重复的，或不重复的数据点编码
-# 然后系统会给这些数据点编码一个数字编号，重复的话就1,2,3,4以此类推，不重复则从1重新开始
-# 注意：我填写的列，最好按照数据点编码（第一列）先排个序，但注意不要破坏色块的结构
-# 以下是一个示例，所有行的内容属于同一个色块
-# AE	1
-# AN	1
-# AN	2
-# AN	3
-# AN	4
-# AN	5
-# AN	6
-# AN	7
-# AN	8
-# AN	9
-# CR	1
-# CR	2
-# CR	3
-# CR	4
-# PF	1
-# PW	1
+import openpyxl
+
+"""
+
+此脚本的逻辑是：
+  需要代码读取单元格颜色，只有“连续的，且颜色相同的单元格”才能成为“同一个色块“
+  在同一个色块下，进行当前逻辑的编号，如果遍历到了一个新的色块，则
+  一定从1开始，重新编号
+  即使新色块的第一行和上一个色块的最后一行的内容是一样的，但是他们的颜色不一样，他们就属于不同的色块，不同的色块，编号不连续
+
+使用说明：
+该脚本用于处理Excel文件中的一列数据，依据数据的色块进行编码，并生成一个新的Excel文件。具体功能如下：
+1. 脚本会读取指定路径的Excel文件，并识别目标列中的数据，按照色块进行分组。
+2. 在每个色块内部，脚本会对数据进行编号：
+   - 重复的数据会依次编号，从1开始，比如：1, 2, 3, 4
+   - 不重复的数据则会从1重新开始编号。
+3. 用户需注意，源文件中填写的数据列必须保持列名不变，以便系统能够正确识别。
+4. 编码后的结果将会写入新的Excel文件中，新文件将以时间戳命名，并保存在指定路径。
+
+使用步骤：
+1. 在Excel的指定列中填写数据，并确保数据按设备类型分类并带有色块。
+2. 调整源文件列中数据的顺序，确保不破坏色块的结构。
+3. 运行该脚本，脚本将自动对数据进行编码并生成新的Excel文件。
+
+注意事项：
+- 确保安装了‘pandas’和‘openpyxl’库，以便正常执行文件读写操作。
+- 本脚本适用于按照色块分组的数据编码，不适合其他格式的数据处理。
+"""
 
 # 文件路径
-file_path = r'C:\Users\JA085914\Desktop\PY\数据处理\19.按交替涂色的色块，自动给信号编码排序.xlsx'
+file_path = r'../../PY/数据处理/19.按交替涂色的色块，自动给信号编码排序.xlsx'
 # 新生成的文件路径
 timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-new_file_path = fr'C:\Users\JA085914\Desktop\PY\数据处理\数据点编号_{timestamp}.xlsx'
+new_file_path = fr'../../PY/数据处理/数据点编号_{timestamp}.xlsx'
 
 # 读取Excel文件
-df = pd.read_excel(file_path)
+wb = openpyxl.load_workbook(file_path)
+sheet = wb.active  # 获取活动的工作表
 
 # 涉及的列
-target_column = '把要编序号的内容放在这里'
-
-# 存储结果的列表
-results = []
-current_block = []
+target_column_index = 1  # 根据你的目标列修改，如第一列为1，第二列则为2
 previous_value = None
+previous_color = None
+current_block = []
+results = []
 
 # 遍历目标列，识别色块
-for value in df[target_column]:
-    if value == previous_value:
+for row in sheet.iter_rows(min_row=2, min_col=target_column_index, max_col=target_column_index):  # 从第二行开始
+    cell = row[0]
+    value = cell.value
+    fill_color = cell.fill.start_color.index  # 获取单元格颜色
+
+    # 判断当前单元格的值和颜色是否与上一个相同
+    if value == previous_value and fill_color == previous_color:
         current_block.append(value)  # 如果相同，继续添加到当前色块
     else:
         # 当前值与前一个值不同，处理当前色块
@@ -62,7 +71,9 @@ for value in df[target_column]:
         # 开启新的色块
         current_block = [value]
 
+    # 更新前一个值和前一个颜色
     previous_value = value
+    previous_color = fill_color
 
 # 处理最后一个色块
 if current_block:
@@ -75,8 +86,8 @@ if current_block:
         results.append((item, count_map[item]))
 
 # 创建新的工作簿
-wb = Workbook()
-ws = wb.active
+wb_output = Workbook()
+ws = wb_output.active
 
 # 写入标题
 ws.append(['原始内容', '编号'])
@@ -86,8 +97,6 @@ for original_value, number in results:
     ws.append([original_value, number])
 
 # 保存新的文件
-wb.save(new_file_path)
+wb_output.save(new_file_path)
 
 print(f"新的文件已生成：{new_file_path}")
-
-

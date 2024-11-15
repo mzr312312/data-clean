@@ -12,9 +12,9 @@ from datetime import datetime
 
 # ========== 手动调整的变量 ==========
 # 输入和输出文件路径
-input_file_path = r'C:\Users\JA085914\Desktop\PY\数据处理\12.利用标准字典进行字段匹配(莱文斯坦距离)\特征字段输入.xlsx'
-dictionary_file_path = r'C:\Users\JA085914\Desktop\PY\数据处理\11.根据已有成果，生成标准字典（特征字段-数据点映射）\标准字典（特征字段-数据点映射）.xlsx'
-output_file_path_template = r'C:\Users\JA085914\Desktop\PY\数据处理\12.利用标准字典进行字段匹配(莱文斯坦距离)\最新output_匹配结果_{timestamp}.xlsx'
+input_file_path = r'../../PY/数据处理/12.利用标准字典进行字段匹配(莱文斯坦距离)/特征字段输入.xlsx'
+dictionary_file_path = r'../../PY/数据处理/12.利用标准字典进行字段匹配(莱文斯坦距离)/标准字典（特征字段-数据点映射）.xlsx'
+output_file_path_template = r'../../PY/数据处理/12.利用标准字典进行字段匹配(莱文斯坦距离)/最新output_匹配结果_{timestamp}.xlsx'
 
 # 特征字段列名和字典中的列名
 feature_column_name = '特征字段'  # 输入文件中的列名

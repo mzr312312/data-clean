@@ -25,14 +25,14 @@ from datetime import datetime
 # 引入时间模块，用于生成文件名
 # 定义变量
 # 定义读取的数据源文件路径
-input_file_path = r'C:\Users\JA085914\Desktop\PY\数据处理\04.统计某一列所有值的重复次数-模板.xlsx'
+input_file_path = r'../../PY/数据处理/04.统计某一列所有值的重复次数-模板.xlsx'
 # 定义该数据原文件里的tab页名称
 sheet_name = '统计'
 # 定义该tab页里，要统计哪一列的数据（直接输入列的名字，不需要数是第几列）
 column_name = '需要统计的文字'
 # 定义输出的新文件的路径
 timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-output_file_path = rf'C:\Users\JA085914\Desktop\PY\数据处理\统计结果_{timestamp}.xlsx'
+output_file_path = rf'../../PY/数据处理/统计结果_{timestamp}.xlsx'
 # 定义输出的新文件里，两列的名字是什么。此处，第一列代表"需要统计的那一列中的所有内容，去重后的结果", 第二列代表"这些内容出现的次数"
 output_column_names = ['列的内容', '出现次数']
 
