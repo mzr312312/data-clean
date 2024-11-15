@@ -3,7 +3,6 @@
 set REPO_DIR=D:\PycharmProjects\pythonProject
 
 cd /d %REPO_DIR%
-
 echo start to Synchronize the code...
 
 :: 添加所有更改到暂存区
