@@ -3,12 +3,45 @@ import pandas as pd
 from datetime import datetime
 import numpy as np
 
-# 设置路径
-existing_standard_dict_file = r'C:\Users\JA085914\Desktop\PY\数据处理\11.根据已有成果，生成标准字典（特征字段-数据点映射）\标准字典（特征字段-数据点映射）.xlsx'
-raw_material_folder = r'C:\Users\JA085914\Desktop\PY\数据处理\11.根据已有成果，生成标准字典（特征字段-数据点映射）\原料池'
+"""
+说明：
+该脚本用于根据已有成果生成标准字典（特征字段-数据点映射）。它会从指定的Excel文件中加载现有的标准字典，并通过遍历指定文件夹中的所有Excel文件更新该字典。最终，它将更新后的标准字典保存回原始文件中。
+
+功能：
+1. 加载现有标准字典。
+2. 遍历给定文件夹中的Excel文件，并更新标准字典。
+3. 去重和清理标准字典中的空值。
+4. 保存更新后的标准字典到指定的Excel文件。
+
+原料池：
+“原料池”是存放原材料信息的Excel文件集合。这些文件包含了需要更新的特征字段，通常包括不同的特征名称及其对应的标准名称。在使用脚本时，确保原料池中的文件格式与预期一致，文件应包含'标准名称'和'特征字段'等必要列。脚本将根据这些信息更新标准字典。
+
+使用方法：
+1. 确保已安装所需的Python库，包括pandas和numpy。
+2. 修改脚本中的路径，以符合实际文件结构：
+   - `existing_standard_dict_file`：现有标准字典的Excel文件路径。
+   - `raw_material_folder`：存放需要处理的原料池Excel文件的文件夹路径。
+3. 根据需要修改工作表名称或索引：
+   - `worksheet_name_or_index`：可以指定工作表的名称或索引。
+   - 当前来说，worksheet_name_or_index = 0的意思是：“选择第一个工作表”，无论这个工作表叫什么名字，都将被处理。
+   - 文件名无所谓，只要在"原料池"文件夹中有相应的Excel文件即可。
+4. 执行脚本，标准字典将被更新并保存。
+
+注意事项：
+- 确保Excel文件格式正确，包含'标准名称'和'特征字段'等必要列。
+- 如果标准字典的Excel文件丢失，将返回一个空字典。
+- 更新记录时间戳将被添加到标准字典中。
+"""
+
+
+
+# 设置待更新的标准字典的文件路径
+existing_standard_dict_file = r'../../PY/数据处理/12.利用标准字典进行字段匹配(莱文斯坦距离)/标准字典（特征字段-数据点映射）.xlsx'
+# 设置原料池文件夹路径
+raw_material_folder = r'../../PY/数据处理/12.利用标准字典进行字段匹配(莱文斯坦距离)/原料池'
 
 # 指定工作表名称或索引
-worksheet_name_or_index = '原料池'  # 或者使用索引：worksheet_name_or_index = 1
+worksheet_name_or_index = 0  # index=0,表示是sheet页的index=0，即第一个sheet页
 
 
 def load_standard_dictionary(file_path):
