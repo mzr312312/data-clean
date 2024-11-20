@@ -1,8 +1,3 @@
-import os
-import pandas as pd
-from datetime import datetime
-import numpy as np
-
 """
 说明：
 该脚本用于根据已有成果生成标准字典（特征字段-数据点映射）。它会从指定的Excel文件中加载现有的标准字典，并通过遍历指定文件夹中的所有Excel文件更新该字典。最终，它将更新后的标准字典保存回原始文件中。
@@ -33,7 +28,10 @@ import numpy as np
 - 更新记录时间戳将被添加到标准字典中。
 """
 
-
+import os
+import pandas as pd
+from datetime import datetime
+import numpy as np
 
 # 设置待更新的标准字典的文件路径
 existing_standard_dict_file = r'../../PY/数据处理/12.利用标准字典进行字段匹配(莱文斯坦距离)/标准字典（特征字段-数据点映射）.xlsx'

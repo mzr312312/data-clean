@@ -1,6 +1,3 @@
-import pandas as pd
-import Levenshtein as lev
-import datetime
 """
 脚本名称: 利用莱文斯坦距离判断两列数据的相似性
 
@@ -22,6 +19,9 @@ import datetime
 日期: 2024年11月15日
 """
 
+import pandas as pd
+import Levenshtein as lev
+import datetime
 
 # 读取Excel文件
 input_file = '../../PY/数据处理/12-3 利用莱文斯坦距离判断两列数据的相似性.xlsx'

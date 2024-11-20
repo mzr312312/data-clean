@@ -1,7 +1,3 @@
-import pandas as pd
-import re
-from datetime import datetime
-
 """
 该脚本用于读取一个Excel文件中的特定列，按照文本和数字的真正顺序进行排序，并将排序后的结果保存为一个新的Excel文件。
 
@@ -21,9 +17,12 @@ from datetime import datetime
 
 输出：
 - 脚本执行完成后，将生成一个名为“真正生序排列_时间戳.xlsx”的文件，包含排序后的数据。
-- 会有报错提示，但不影响程序运行。  
+- 会有报错提示，但不影响程序运行。
 """
 
+import pandas as pd
+import re
+from datetime import datetime
 
 # 定义一个函数，使用正则表达式将字符串分割为文本和数字的组合，最终返回一个列表，用于排序时的比较。
 def natural_sort_key(s):

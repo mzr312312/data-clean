@@ -1,8 +1,3 @@
-import pandas as pd
-from openpyxl import Workbook
-from datetime import datetime
-import openpyxl
-
 """
 
 此脚本的逻辑是：
@@ -29,6 +24,13 @@ import openpyxl
 - 确保安装了‘pandas’和‘openpyxl’库，以便正常执行文件读写操作。
 - 本脚本适用于按照色块分组的数据编码，不适合其他格式的数据处理。
 """
+
+import pandas as pd
+from openpyxl import Workbook
+from datetime import datetime
+import openpyxl
+
+
 
 # 文件路径
 file_path = r'../../PY/数据处理/19.按交替涂色的色块，自动给信号编码排序.xlsx'

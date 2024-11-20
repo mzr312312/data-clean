@@ -1,6 +1,3 @@
-import pandas as pd
-from datetime import datetime
-
 """
 本脚本用于统计 Excel 文件中指定列的各个值的重复次数，并将统计结果保存到新的 Excel 文件中。
 
@@ -17,6 +14,9 @@ from datetime import datetime
 
 注意：请确保输入的文件路径和列名的准确性以避免运行错误。
 """
+
+import pandas as pd
+from datetime import datetime
 
 # 引入时间模块，用于生成文件名
 # 定义变量

@@ -1,10 +1,3 @@
-import pandas as pd
-import numpy as np
-import difflib
-from scipy.cluster.hierarchy import linkage, fcluster
-from scipy.spatial.distance import squareform
-from datetime import datetime
-
 """
 该脚本用于对一组字符串进行层次聚类，并根据指定的阈值生成分组结果。
 
@@ -23,6 +16,15 @@ from datetime import datetime
 输出结果：
 - 生成的 Excel 文件包含原始字符串及其对应的分组编号，分组编号列名会根据设置的阈值动态命名。
 """
+
+import pandas as pd
+import numpy as np
+import difflib
+from scipy.cluster.hierarchy import linkage, fcluster
+from scipy.spatial.distance import squareform
+from datetime import datetime
+
+
 
 # 第1步：读取Excel文件中的数据
 file_path = '../../PY/数据处理/12-2 使用difflib和层次聚类对一组字符串进行分类.xlsx'

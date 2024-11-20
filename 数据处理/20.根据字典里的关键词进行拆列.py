@@ -1,6 +1,3 @@
-import pandas as pd
-import os
-from datetime import datetime
 """
 这个脚本用于处理Excel文件，根据预定义的关键词对特定列中的项进行拆分。
 
@@ -28,6 +25,11 @@ from datetime import datetime
 作者：马卓然
 日期：2024.11.14
 """
+
+import pandas as pd
+import os
+from datetime import datetime
+
 
 
 # 1）定义关键词列表 spilt_keyword_1
