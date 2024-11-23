@@ -1,28 +1,3 @@
-"""
-该脚本用于从指定的 API 接口依次获取多个数据点的时间序列数据，并将其合并为一个 Excel 文件。
-
-使用方法：
-1. 更改 `url` 变量的值为实际的 API 接口地址。
-2. 根据需要更新 `tagCodes` 列表，添加或移除要查询的 `tagCode`。
-3. 设置时间范围，确保 `start_time` 和 `end_time` 的值为所需查询的时间段。
-4. 运行脚本，数据将被获取并合并为一个文件，保存路径在代码中指定。
-
-输出结果：
-- 该脚本将在 `../../PY/时序数据处理/` 目录中生成一个 Excel 文件，文件名格式为 `合并数据_YYYYMMDD_HHMMSS.xlsx`，其中 `YYYYMMDD_HHMMSS` 为当前时间戳。
-- Excel 文件包含时间拆分后的年、月、日、时、分列，及每条数据对应的 `tagCode` 以及 `tagvalue`。
-
-注意事项：
-- 确保在运行脚本之前安装所需的库，您可以使用以下命令进行安装：
-
-pip install requests pandas openpyxl
-
-- 脚本中假定 API 的返回数据中包含 `timeseries` 键，并且存在 `time` 和 `tagvalue` 字段，确保您了解 API 响应的结构。
-- 如果在获取数据时遇到任何警告或错误信息，请检查 `tagCode` 和时间范围是否正确。
-
-作者： 马卓然
-版本： 1.0
-创建日期： 2024年11月22日
-"""
 
 import os
 import requests
