@@ -17,7 +17,7 @@ import pandas as pd
 from datetime import datetime
 
 # 读取Excel文件
-file_path = '../../PY/时序数据处理/01.时间戳标准化.xlsx'
+file_path = '../../../PY/时序数据处理/01.时间戳标准化.xlsx'
 df = pd.read_excel(file_path)
 
 # 检查并填充缺失值

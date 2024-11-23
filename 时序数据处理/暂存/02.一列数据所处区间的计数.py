@@ -3,7 +3,7 @@ import numpy as np
 from datetime import datetime
 
 # 读取数据
-file_path = '../../PY/时序数据处理/02.一列数据所处区间的计数.xlsx'
+file_path = '../../../PY/时序数据处理/02.一列数据所处区间的计数.xlsx'
 df = pd.read_excel(file_path, sheet_name=0)
 
 # 假设数据在第一列，第一行为标题
