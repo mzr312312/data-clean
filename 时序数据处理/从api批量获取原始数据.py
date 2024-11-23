@@ -152,5 +152,5 @@ for i in range(1, len(combined_cut_df)):
 # 打印结果
 print("result_df=\n", result_df)
 result_df.to_excel("result_df.xlsx")
-# 有问题，只剩一行了，还得检查为什么不添加
-# 肯定不对，因为时间差都是0或者1分钟，还得换逻辑
+# 有问题，只剩一行了，还得检查为什么不添加，输出里打印了当前的时间差，可以看到都是0,1分钟这样的，应该是因为时间差小于granularity_minutes，所以就不添加了，所以最后只剩一行了
+# 肯定不对，因为时间差都是0或者1分钟，还得换逻辑，应该是如果i行和第i-1的时间差小于granularity_minutes，则继续查找下一行，下一行应该还和第最开始的那个i-1行做对比，直到某一行和第i行的时间差大于等于granularity_minutes，然后把第i行加入结果DataFrame
