@@ -8,18 +8,12 @@ from datetime import datetime
 url = 'http://10.86.6.3:8081/japrojecttag/timeseries'
 
 tagCodes = [
-    'SJ-T-23-1-Efp-0001_AE01_F',
-    'SJ-T-23-1-Efp-0002_AE01_F',
-    'SJ-T-23-1-Efp-0003_AE01_F',
-    'SJ-T-23-1-Efp-0004_AE01_F',
-    'SJ-T-23-1-Efp-0005_AE01_F',
-    'SJ-T-23-1-Efp-0006_AE01_F',
-    'SJ-T-23-1-Efp-0007_AE01_F',
+    'SJ-A-20-000Q-AS-0001_YE01_F',
+    'SJ-A-20-000Q-AS-0002_YE01_F',
 ]
-
 # 设置时间范围
-start_time = "2024-11-19 09:45:00"
-end_time = "2024-11-19 11:30:00"
+start_time = "2024-11-23 10:00:00"
+end_time = "2024-11-23 14:00:00"
 granularity_minutes = 5
 # 用于存储所有 DataFrame 的列表
 all_data_frames = []
@@ -82,7 +76,8 @@ if all_data_frames:
     # combined_df.to_excel("conmbined1.xlsx")
     # 验证 tagValue 列的每个值是否为 float
     is_float = combined_df['tagValue'].apply(lambda x: isinstance(x, float))
-
+    # 把combined_df保存到excel文件
+    combined_df.to_excel("combined.xlsx")
     # 打印非 float 的值
     not_float_values = combined_df.loc[~is_float, 'tagValue']
     print("不是 float 的值有：")
@@ -103,7 +98,7 @@ if not combined_df.empty:
 
 # 3）创建一个combined_df的独立副本，用于后续存储删除行后的表格
 combined_cut_df = combined_df.copy()
-print("combined_df=\n", combined_df)
+# print("combined_df=\n", combined_df)
 
 # 4）按照时间间隔，删除指定时间间隔内的重复数据的行
 # 遍历每一行，计算其与前一行的时间差
@@ -116,16 +111,45 @@ result_df = pd.DataFrame(columns=combined_cut_df.columns)
 if not combined_cut_df.empty:
     result_df = pd.concat([result_df, combined_cut_df.iloc[[0]]], ignore_index=True)
 
-for i in range(1, len(combined_cut_df)):
-    # 计算当前行时间与前一行的时间差
-    time_diff = (combined_cut_df.iloc[i]['time'] - combined_cut_df.iloc[i - 1]['time']).total_seconds() / 60
-    print(f"第 {i} 行，时间差为 {time_diff} 分钟")
-    # 如果时间差小于 granularity_minutes，则删除当前行（不做添加）
+# 使用while循环，遍历所有行，把符合时间间隔的行加入结果 DataFrame
+i = 1
+while i < len(combined_cut_df):
+    time_diff = (combined_cut_df.iloc[i]['time'] - result_df.iloc[-1]['time']).total_seconds() / 60
+    # print(f"第 {i} 行，时间差为 {time_diff} 分钟")
+
     if time_diff >= granularity_minutes:
         result_df = pd.concat([result_df, combined_cut_df.iloc[[i]]], ignore_index=True)
+        i += 1
+    else:
+        found = False
+
+        for j in range(i + 1, len(combined_cut_df)):
+            time_diff_next = (combined_cut_df.iloc[j]['time'] - result_df.iloc[-1]['time']).total_seconds() / 60
+            # print(f"第 {j} 行与最后一个保留行的时间差为 {time_diff_next} 分钟")
+
+            if time_diff_next >= granularity_minutes:
+                result_df = pd.concat([result_df, combined_cut_df.iloc[[j]]], ignore_index=True)
+                i = j + 1  # 更新 i 位置到下一个要检查的行
+                found = True
+                break
+
+        if not found:
+            i += 1
+
+# # 打印结果
+# print("\n保留的时间戳：")
+# for _, row in result_df.iterrows():
+#     print(row['time'].strftime("%Y-%m-%d %H:%M:%S"))
+
+
+# 获取当前时间戳
+current_timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+
+# 定义输出文件的路径
+output_file_path = f"../../PY/时序数据处理/按颗粒度{granularity_minutes}min筛选的原始数据_{current_timestamp}.xlsx"
 
 # 打印结果
-print("result_df=\n", result_df)
-result_df.to_excel("result_df.xlsx")
-# 有问题，只剩一行了，还得检查为什么不添加，输出里打印了当前的时间差，可以看到都是0,1分钟这样的，应该是因为时间差小于granularity_minutes，所以就不添加了，所以最后只剩一行了
-# 肯定不对，因为时间差都是0或者1分钟，还得换逻辑，应该是如果i行和第i-1的时间差小于granularity_minutes，则继续查找下一行，下一行应该还和第最开始的那个i-1行做对比，直到某一行和第i行的时间差大于等于granularity_minutes，然后把第i行加入结果DataFrame
+# print("result_df=\n", result_df)
+result_df.to_excel(output_file_path)
+
+print(f"结果已保存到: {output_file_path}")

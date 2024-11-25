@@ -1,9 +1,7 @@
-for i in range(1,101):
-    for x in range(i,101):
-        if i*x == 100:
-            print(i,x)
-            i=x+1
-            print("i=",i)
-            print("x=",x)
-            break
 
+from matplotlib import pyplot as plt
+
+
+fig, ax = plt.subplots()             # Create a figure containing a single Axes.
+ax.plot([1, 2, 3, 4], [1, 4, 2, 3])  # Plot some data on the Axes.
+plt.show()                           # Show the figure.
