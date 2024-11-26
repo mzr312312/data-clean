@@ -8,13 +8,35 @@ from datetime import datetime
 url = 'http://10.86.6.3:8081/japrojecttag/timeseries'
 
 tagCodes = [
-    'SJ-A-20-000Q-AS-0001_YE01_F',
-    'SJ-A-20-000Q-AS-0002_YE01_F',
+    'SJ-B-23-1-Efp-0001_AE01_F',
+    'SJ-B-23-1-Efp-0002_AE01_F',
+    'SJ-B-23-1-Efp-0003_AE01_F',
+    'SJ-B-23-1-Efp-0004_AE01_F',
+    'SJ-B-23-1-Efp-0005_AE01_F',
+    'SJ-B-23-1-Efp-0006_AE01_F',
+    'SJ-B-23-1-Efp-0007_AE01_F',
+    'SJ-B-23-1-Efp-0008_AE01_F',
+    'SJ-B-23-1-Efp-0009_AE01_F',
+    'SJ-B-23-1-Efp-0010_AE01_F',
+    'SJ-B-23-1-Efp-0011_AE01_F',
+    'SJ-B-23-1-Efp-0012_AE01_F',
+    'SJ-B-23-1-Efp-0013_AE01_F',
+    'SJ-B-23-1-Efp-0014_AE01_F',
+    'SJ-A-23-1-Efp-0001_AE01_F',
+    'SJ-A-23-1-Efp-0002_AE01_F',
+    'SJ-A-23-1-Efp-0003_AE01_F',
+    'SJ-T-23-1-Efp-0001_AE01_F',
+    'SJ-T-23-1-Efp-0002_AE01_F',
+    'SJ-T-23-1-Efp-0003_AE01_F',
+    'SJ-T-23-1-Efp-0004_AE01_F',
+    'SJ-T-23-1-Efp-0005_AE01_F',
+    'SJ-T-23-1-Efp-0006_AE01_F',
+    'SJ-T-23-1-Efp-0007_AE01_F',
 ]
 # 设置时间范围
-start_time = "2024-11-23 10:00:00"
-end_time = "2024-11-23 14:00:00"
-granularity_minutes = 5
+start_time = "2024-11-24 00:00:00"
+end_time = "2024-11-25 00:00:00"
+granularity_minutes = 10
 # 用于存储所有 DataFrame 的列表
 all_data_frames = []
 
@@ -29,7 +51,7 @@ for tagCode in tagCodes:
 
     # 发送 POST 请求
     response = requests.post(url, json=data)
-
+    print(response)
     # 检查请求是否成功
     if response.status_code == 200:
         # 解析 JSON 数据
@@ -102,7 +124,7 @@ combined_cut_df = combined_df.copy()
 
 # 4）按照时间间隔，删除指定时间间隔内的重复数据的行
 # 遍历每一行，计算其与前一行的时间差
-print(len(combined_cut_df))
+print("len(combined_cut_df))=",len(combined_cut_df))
 
 # 初始化一个新的 DataFrame 用于保存保留的行
 result_df = pd.DataFrame(columns=combined_cut_df.columns)
@@ -110,9 +132,10 @@ result_df = pd.DataFrame(columns=combined_cut_df.columns)
 # 将第一行直接加入到结果 DataFrame 中
 if not combined_cut_df.empty:
     result_df = pd.concat([result_df, combined_cut_df.iloc[[0]]], ignore_index=True)
-
+    print("result_df=\n",result_df)
 # 使用while循环，遍历所有行，把符合时间间隔的行加入结果 DataFrame
 i = 1
+print("i=",i)
 while i < len(combined_cut_df):
     time_diff = (combined_cut_df.iloc[i]['time'] - result_df.iloc[-1]['time']).total_seconds() / 60
     # print(f"第 {i} 行，时间差为 {time_diff} 分钟")
@@ -126,12 +149,12 @@ while i < len(combined_cut_df):
         for j in range(i + 1, len(combined_cut_df)):
             time_diff_next = (combined_cut_df.iloc[j]['time'] - result_df.iloc[-1]['time']).total_seconds() / 60
             # print(f"第 {j} 行与最后一个保留行的时间差为 {time_diff_next} 分钟")
-
+            print("i,j=",i,j)
             if time_diff_next >= granularity_minutes:
                 result_df = pd.concat([result_df, combined_cut_df.iloc[[j]]], ignore_index=True)
                 i = j + 1  # 更新 i 位置到下一个要检查的行
                 found = True
-                break
+            break
 
         if not found:
             i += 1
