@@ -5,10 +5,6 @@ from scipy import stats
 import plotly.graph_objects as go
 from plotly.subplots import make_subplots  # 导入 make_subplots
 
-# 下面这两行是使用jupyter notebook的时候，用于在notebook中显示图表的设置
-# import plotly.offline as py
-# py.init_notebook_mode(connected=True)
-
 # 从.pkl文件读取原始数据
 result_df = pd.read_pickle('result_df_electricity.pkl')
 print(result_df)
