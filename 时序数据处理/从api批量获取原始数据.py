@@ -8,37 +8,42 @@ from datetime import datetime
 url = 'http://10.86.6.3:8081/japrojecttag/timeseries'
 
 tagCodes = [
-    'SJ-B-23-1-Efp-0001_AE01_F',
-    'SJ-B-23-1-Efp-0002_AE01_F',
-    'SJ-B-23-1-Efp-0003_AE01_F',
-    'SJ-B-23-1-Efp-0004_AE01_F',
-    'SJ-B-23-1-Efp-0005_AE01_F',
-    'SJ-B-23-1-Efp-0006_AE01_F',
-    'SJ-B-23-1-Efp-0007_AE01_F',
-    'SJ-B-23-1-Efp-0008_AE01_F',
-    'SJ-B-23-1-Efp-0009_AE01_F',
-    'SJ-B-23-1-Efp-0010_AE01_F',
-    'SJ-B-23-1-Efp-0011_AE01_F',
-    'SJ-B-23-1-Efp-0012_AE01_F',
-    'SJ-B-23-1-Efp-0013_AE01_F',
-    'SJ-B-23-1-Efp-0014_AE01_F',
-    'SJ-A-23-1-Efp-0001_AE01_F',
-    'SJ-A-23-1-Efp-0002_AE01_F',
-    'SJ-A-23-1-Efp-0003_AE01_F',
-    'SJ-T-23-1-Efp-0001_AE01_F',
-    'SJ-T-23-1-Efp-0002_AE01_F',
-    'SJ-T-23-1-Efp-0003_AE01_F',
-    'SJ-T-23-1-Efp-0004_AE01_F',
-    'SJ-T-23-1-Efp-0005_AE01_F',
-    'SJ-T-23-1-Efp-0006_AE01_F',
-    'SJ-T-23-1-Efp-0007_AE01_F',
+    "SJ-T-23-1-Efp-0001_AE01_F",
+    "SJ-T-23-1-Efp-0002_AE01_F",
+    "SJ-T-23-1-Efp-0003_AE01_F",
+    "SJ-T-23-1-Efp-0004_AE01_F",
+    "SJ-T-23-1-Efp-0005_AE01_F",
+    "SJ-T-23-1-Efp-0006_AE01_F",
+    "SJ-T-23-1-Efp-0007_AE01_F",
 ]
 # 设置时间范围
-start_time = "2024-11-24 00:00:00"
-end_time = "2024-11-25 00:00:00"
-granularity_minutes = 10
+start_time = "2024-11-17 00:00:00"
+end_time = "2024-11-27 00:00:00"
+granularity_minutes = 5
 # 用于存储所有 DataFrame 的列表
 all_data_frames = []
+
+
+# 处理 tagValue 列的转换函数，将布尔值转换为 1 或 0，将数值转换为浮点数
+def convert_tag_value(value):
+    if isinstance(value, str):
+        # 尝试将字符串转换为浮点数，如果成功则返回该浮点数
+        try:
+            return float(value)
+        except ValueError:
+            # 如果转换失败，继续判断是否为布尔值
+            if value.lower() == 'true':
+                return 1
+            elif value.lower() == 'false':
+                return 0
+            else:
+                return None  # 或者可以返回一个默认值，如 0
+
+    elif isinstance(value, bool):
+        return 1 if value else 0
+
+    return float(value)  # 默认将其他情况转换为 float
+
 
 # 遍历每个 tagCode
 for tagCode in tagCodes:
@@ -65,8 +70,10 @@ for tagCode in tagCodes:
             if timeseries_data is not None:
                 # 将数据转换为 DataFrame
                 df = pd.DataFrame(timeseries_data)
-                # 转换 tagValue 列为 float
-                df['tagValue'] = df['tagValue'].astype(float)
+                # 使用转换函数处理 tagValue 列（如果是布尔值，则转换为 1 或 0，如果是数值，则转换为浮点数）
+                df['tagValue'] = df['tagValue'].apply(convert_tag_value)  # 使用自定义函数处理 tagValue
+                # 转换 time 列为 datetime
+                df['time'] = pd.to_datetime(df['time'])
                 # 添加 tagCode 列
                 df['tagCode'] = tagCode
 
@@ -99,7 +106,7 @@ if all_data_frames:
     # 验证 tagValue 列的每个值是否为 float
     is_float = combined_df['tagValue'].apply(lambda x: isinstance(x, float))
     # 把combined_df保存到excel文件
-    combined_df.to_excel("combined.xlsx")
+    # combined_df.to_excel("combined.xlsx")
     # 打印非 float 的值
     not_float_values = combined_df.loc[~is_float, 'tagValue']
     print("不是 float 的值有：")
@@ -137,24 +144,26 @@ if not combined_cut_df.empty:
 i = 1
 print("i=",i)
 while i < len(combined_cut_df):
-    time_diff = (combined_cut_df.iloc[i]['time'] - result_df.iloc[-1]['time']).total_seconds() / 60
-    # print(f"第 {i} 行，时间差为 {time_diff} 分钟")
+    if 0 < i < len(combined_cut_df):
+        time_diff = (combined_cut_df.iloc[i]['time'] - combined_cut_df.iloc[i-1]['time']).total_seconds() / 60
 
-    if time_diff >= granularity_minutes:
+    if abs(time_diff) >= granularity_minutes:
         result_df = pd.concat([result_df, combined_cut_df.iloc[[i]]], ignore_index=True)
         i += 1
     else:
         found = False
 
         for j in range(i + 1, len(combined_cut_df)):
-            time_diff_next = (combined_cut_df.iloc[j]['time'] - result_df.iloc[-1]['time']).total_seconds() / 60
-            # print(f"第 {j} 行与最后一个保留行的时间差为 {time_diff_next} 分钟")
+            time_diff_next = (combined_cut_df.iloc[j]['time'] - combined_cut_df.iloc[i]['time']).total_seconds() / 60
+            print(f"第 {j} 行与第 {i} 行时间差为 {time_diff_next} 分钟")
             print("i,j=",i,j)
-            if time_diff_next >= granularity_minutes:
+            if abs(time_diff_next) >= granularity_minutes:
                 result_df = pd.concat([result_df, combined_cut_df.iloc[[j]]], ignore_index=True)
-                i = j + 1  # 更新 i 位置到下一个要检查的行
+                print(f"把第{j}行加入结果")
+                i = j  # 更新 i 位置到下一个要检查的行
+                print(f"从第{i+1}行开始继续遍历")
                 found = True
-            break
+                break
 
         if not found:
             i += 1
@@ -170,9 +179,10 @@ current_timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
 
 # 定义输出文件的路径
 output_file_path = f"../../PY/时序数据处理/按颗粒度{granularity_minutes}min筛选的原始数据_{current_timestamp}.xlsx"
-
+# 保存DataFrame
+# result_df.to_pickle('result_df.pkl') # 暂时不再更新这个pkl文件
 # 打印结果
 # print("result_df=\n", result_df)
+# 保存结果到 Excel 文件
 result_df.to_excel(output_file_path)
-
 print(f"结果已保存到: {output_file_path}")
