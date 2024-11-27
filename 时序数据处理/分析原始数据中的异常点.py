@@ -72,3 +72,4 @@ with pd.ExcelWriter('tag_code_analysis.xlsx') as writer:
 
         # 显示图表
         fig.show()
+        # fig.write_image(f"{tag_code}.png")  # 保存图表为图片
