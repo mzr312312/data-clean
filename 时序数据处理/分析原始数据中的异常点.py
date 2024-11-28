@@ -4,14 +4,16 @@ import pandas as pd
 from scipy import stats
 import plotly.graph_objects as go
 from plotly.subplots import make_subplots  # 导入 make_subplots
+from 时序数据处理.从api批量获取原始数据 import result_df
+
 
 # 下面这两行是使用jupyter notebook的时候，用于在notebook中显示图表的设置
 # import plotly.offline as py
 # py.init_notebook_mode(connected=True)
 
 # 从.pkl文件读取原始数据
-result_df = pd.read_pickle('result_df_electricity.pkl')
-print(result_df)
+# result_df = pd.read_pickle('result_df_electricity.pkl')
+# print(result_df)
 
 # 获取不重复的tagCode并存储在列表中
 tag_codes = result_df['tagCode'].unique().tolist()

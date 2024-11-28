@@ -8,14 +8,42 @@ from datetime import datetime
 url = 'http://10.86.6.3:8081/japrojecttag/timeseries'
 
 tagCodes = [
-    "SJ-V-05-000D-GD-0112_PR01_F",
-    "SJ-V-05-000D-GD-0119_PR04_F",
-    "SJ-V-05-000D-GD-0231_PR01_F",
+    "SJ-T-23-1-Efp-0001_AE01_F",
+    "SJ-T-23-1-Efp-0002_AE01_F",
+    "SJ-T-23-1-Efp-0003_AE01_F",
+    "SJ-T-23-1-Efp-0004_AE01_F",
+    "SJ-T-23-1-Efp-0005_AE01_F",
+    "SJ-T-23-1-Efp-0006_AE01_F",
+    "SJ-T-23-1-Efp-0007_AE01_F",
+    "SJ-B-23-1-Efp-0001_AE01_F",
+    "SJ-B-23-1-Efp-0002_AE01_F",
+    "SJ-B-23-1-Efp-0003_AE01_F",
+    "SJ-B-23-1-Efp-0004_AE01_F",
+    "SJ-B-23-1-Efp-0005_AE01_F",
+    "SJ-B-23-1-Efp-0006_AE01_F",
+    "SJ-B-23-1-Efp-0007_AE01_F",
+    "SJ-B-23-1-Efp-0008_AE01_F",
+    "SJ-B-23-1-Efp-0009_AE01_F",
+    "SJ-B-23-1-Efp-0010_AE01_F",
+    "SJ-B-23-1-Efp-0011_AE01_F",
+    "SJ-B-23-1-Efp-0012_AE01_F",
+    "SJ-B-23-1-Efp-0013_AE01_F",
+    "SJ-B-23-1-Efp-0014_AE01_F",
+    "SJ-A-23-1-Efp-0001_AE01_F",
+    "SJ-A-23-1-Efp-0002_AE01_F",
+    "SJ-A-23-1-Efp-0003_AE01_F",
+    "SJ-T-23-1-Efp-0001_AE01_F",
+    "SJ-T-23-1-Efp-0002_AE01_F",
+    "SJ-T-23-1-Efp-0003_AE01_F",
+    "SJ-T-23-1-Efp-0004_AE01_F",
+    "SJ-T-23-1-Efp-0005_AE01_F",
+    "SJ-T-23-1-Efp-0006_AE01_F",
+    "SJ-T-23-1-Efp-0007_AE01_F",
 ]
 # 设置时间范围
-start_time = "2024-11-09 00:00:00"
-end_time = "2024-11-28 16:00:00"
-granularity_minutes = 1
+start_time = "2024-11-10 00:00:00"
+end_time = "2024-11-13 00:00:00"
+granularity_minutes = 5
 # 用于存储所有 DataFrame 的列表
 all_data_frames = []
 
@@ -176,7 +204,7 @@ current_timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
 # 定义输出文件的路径
 output_file_path = f"../../PY/时序数据处理/按颗粒度{granularity_minutes}min筛选的原始数据_{current_timestamp}.xlsx"
 # 保存DataFrame
-result_df.to_pickle('result_df.pkl')
+result_df.to_pickle('result_df.pkl') # 暂时不再更新这个pkl文件
 # 打印结果
 # print("result_df=\n", result_df)
 # 保存结果到 Excel 文件
