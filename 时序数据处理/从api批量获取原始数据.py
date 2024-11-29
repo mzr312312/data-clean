@@ -8,13 +8,50 @@ from datetime import datetime
 url = 'http://10.86.6.3:8081/japrojecttag/timeseries'
 
 tagCodes = [
-    "SJ-V-05-000D-GD-0112_PR01_F",
-    "SJ-V-05-000D-GD-0119_PR04_F",
-    "SJ-V-05-000D-GD-0231_PR01_F",
+    'SJ-B-21-000D-PR-0001_YE01_F',
+    'SJ-B-21-000D-PR-0002_YE01_F',
+    'SJ-B-21-000D-PR-0003_YE01_F',
+    'SJ-B-21-000D-PR-0004_YE01_F',
+    'SJ-B-21-000D-PR-0005_YE01_F',
+    'SJ-B-21-000D-PR-0006_YE01_F',
+    'SJ-B-21-000D-PR-0007_YE01_F',
+    'SJ-B-21-000D-PR-0008_YE01_F',
+    'SJ-B-21-000D-PR-0009_YE01_F',
+    'SJ-B-21-000D-PR-0010_YE01_F',
+    'SJ-B-21-000D-PR-0011_YE01_F',
+    'SJ-B-21-000D-PR-0012_YE01_F',
+    'SJ-B-21-000D-PR-0013_YE01_F',
+    'SJ-B-21-000D-PR-0014_YE01_F',
+    'SJ-B-21-000D-PR-0015_YE01_F',
+    'SJ-B-21-000D-PR-0016_YE01_F',
+    'SJ-B-21-000D-PR-0017_YE01_F',
+    'SJ-B-21-000D-PR-0018_YE01_F',
+    'SJ-B-21-000D-PR-0019_YE01_F',
+    'SJ-B-21-000D-PR-0020_YE01_F',
+    'SJ-B-21-000D-PR-0021_YE01_F',
+    'SJ-B-21-000D-PR-0022_YE01_F',
+    'SJ-B-21-000D-PR-0023_YE01_F',
+    'SJ-B-21-000D-PR-0024_YE01_F',
+    'SJ-B-21-000D-PR-0025_YE01_F',
+    'SJ-B-21-000D-PR-0026_YE01_F',
+    'SJ-B-21-000D-PR-0027_YE01_F',
+    'SJ-B-21-000D-PR-0028_YE01_F',
+    'SJ-B-21-000D-PR-0029_YE01_F',
+    'SJ-B-21-000D-PR-0030_YE01_F',
+    'SJ-B-21-000D-PR-0031_YE01_F',
+    'SJ-B-21-000D-PR-0032_YE01_F',
+    'SJ-B-21-000D-PR-0033_YE01_F',
+    'SJ-B-21-000D-PR-0034_YE01_F',
+    'SJ-B-21-000D-PR-0035_YE01_F',
+    'SJ-B-21-000D-PR-0036_YE01_F',
+    'SJ-B-21-000D-PR-0037_YE01_F',
+    'SJ-B-21-000D-PR-0038_YE01_F',
+    'SJ-B-21-000D-PR-0039_YE01_F',
+    'SJ-B-21-000D-PR-0040_YE01_F',
 ]
 # 设置时间范围
-start_time = "2024-11-09 00:00:00"
-end_time = "2024-11-28 16:00:00"
+start_time = "2024-11-28 00:00:00"
+end_time = "2024-11-29 00:00:00"
 granularity_minutes = 1
 # 用于存储所有 DataFrame 的列表
 all_data_frames = []

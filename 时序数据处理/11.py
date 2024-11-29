@@ -1,4 +1,2 @@
-squares = []
-for x in range(10):
-    squares.append(x**2)
-print(squares)
+tel = {'jack': 4098, 'sape': 4139}
+print(tel['jack'])
