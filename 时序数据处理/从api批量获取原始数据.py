@@ -120,8 +120,8 @@ for tagCode in tagCodes:
                     df['分'] = df['time'].dt.minute
 
                 # 转换 tagvalue 为数字类型
-                if 'tagvalue' in df.columns:
-                    df['tagvalue'] = pd.to_numeric(df['tagvalue'], errors='coerce')  # 转换为数值类型
+                # if 'tagvalue' in df.columns:
+                #     df['tagvalue'] = pd.to_numeric(df['tagvalue'], errors='coerce')  # 转换为数值类型
 
                 # 添加到总的 DataFrame 列表中
                 all_data_frames.append(df)
