@@ -1,2 +1,3 @@
-tel = {'jack': 4098, 'sape': 4139}
-print(tel['jack'])
+import pandas as pd
+result_df = pd.read_pickle('combined_cut_df.pkl')
+print(result_df)
