@@ -10,7 +10,7 @@ from plotly.subplots import make_subplots  # 导入 make_subplots
 import plotly.offline as py
 py.init_notebook_mode(connected=True)
 
-# %run 从api批量获取原始数据.py
+# %run get_data_from_api.py
 # 从.pkl文件读取原始数据
 result_df = pd.read_pickle('result_df.pkl')
 print(result_df)

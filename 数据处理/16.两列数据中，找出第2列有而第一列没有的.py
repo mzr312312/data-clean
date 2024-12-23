@@ -2,7 +2,7 @@ import pandas as pd
 from datetime import datetime
 
 # 读取Excel文件
-file_path = r'C:\Users\JA085914\Desktop\PY\数据处理\16.两列数据中，找出第2列有而第一列没有的.xlsx'
+file_path = r'../../PY/数据处理/16.两列数据中，找出第2列有而第一列没有的.xlsx'
 data = pd.read_excel(file_path)
 
 # 假设列名是"列1"和"列2"
@@ -17,7 +17,7 @@ result_df = pd.DataFrame(list(difference), columns=['列2有而列1没有'])
 
 # 生成当前时间戳
 timestamp = datetime.now().strftime('%Y%m%d_%H%M%S')
-output_file_path = f'C:\\Users\\JA085914\\Desktop\\PY\\数据处理\\对比_{timestamp}.xlsx'
+output_file_path = fr'../../PY/数据处理/对比_{timestamp}.xlsx'
 
 # 输出结果到新的Excel文件
 result_df.to_excel(output_file_path, index=False)
