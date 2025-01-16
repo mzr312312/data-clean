@@ -1,10 +1,14 @@
+import pandas as pd
+from openpyxl import Workbook
+from datetime import datetime
+import openpyxl
+
 """
 
 此脚本的逻辑是：
-  需要代码读取单元格颜色，只有“连续的，且颜色相同的单元格”才能成为“同一个色块“
-  在同一个色块下，进行当前逻辑的编号，如果遍历到了一个新的色块，则
-  一定从1开始，重新编号
-  即使新色块的第一行和上一个色块的最后一行的内容是一样的，但是他们的颜色不一样，他们就属于不同的色块，不同的色块，编号不连续
+1.需要代码读取单元格颜色，只有“连续的，且颜色相同的单元格”才能成为“同一个色块“
+2.在同一个色块下，进行当前逻辑的编号，如果遍历到了一个新的色块，则一定从1开始，重新编号
+3.即使新色块的第一行和上一个色块的最后一行的内容是一样的，但是他们的颜色不一样，他们就属于不同的色块，不同的色块，编号不连续
 
 使用说明：
 该脚本用于处理Excel文件中的一列数据，依据数据的色块进行编码，并生成一个新的Excel文件。具体功能如下：
@@ -25,18 +29,15 @@
 - 本脚本适用于按照色块分组的数据编码，不适合其他格式的数据处理。
 """
 
-import pandas as pd
-from openpyxl import Workbook
-from datetime import datetime
-import openpyxl
-
-
 
 # 文件路径
 file_path = r'../../PY/数据处理/19.按交替涂色的色块，自动给信号编码排序.xlsx'
 # 新生成的文件路径
 timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
 new_file_path = fr'../../PY/数据处理/数据点编号_{timestamp}.xlsx'
+
+# 设置连续空值的最大数量
+max_empty_count = 20000  # 你可以根据需要修改这个值
 
 # 读取Excel文件
 wb = openpyxl.load_workbook(file_path)
@@ -48,12 +49,24 @@ previous_value = None
 previous_color = None
 current_block = []
 results = []
+empty_count = 0  # 计数器，用于跟踪连续空值的数量
 
 # 遍历目标列，识别色块
 for row in sheet.iter_rows(min_row=2, min_col=target_column_index, max_col=target_column_index):  # 从第二行开始
     cell = row[0]
     value = cell.value
     fill_color = cell.fill.start_color.index  # 获取单元格颜色
+
+    # 如果值为空，增加空值计数器
+    if value is None:
+        empty_count += 1
+        # 如果连续空值数量达到最大值，停止处理
+        if empty_count >= max_empty_count:
+            print(f"连续遇到 {max_empty_count} 个空值，停止处理。")
+            break
+        continue
+    else:
+        empty_count = 0  # 重置空值计数器
 
     # 判断当前单元格的值和颜色是否与上一个相同
     if value == previous_value and fill_color == previous_color:
