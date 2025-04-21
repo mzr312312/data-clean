@@ -1,4 +1,4 @@
-pipimport pandas as pd
+import pandas as pd
 import os
 from datetime import datetime
 # 目的是，删除某一列内容里，最后一位有一些.或者-之类的小尾巴
