@@ -47,7 +47,7 @@ from datetime import datetime
 script_dir = os.path.dirname(os.path.abspath(__file__))
 
 # 使用你提供的相对路径（原始字符串）
-input_file = os.path.join(script_dir, r"..\..\PY\数据处理", "22.把一列内容里相同内容合并单元格.xlsx")
+input_file = r"..\..\PY\数据处理\22.把一列内容里相同内容合并单元格.xlsx"
 
 # 输出调试信息
 print(f"输入文件路径：{input_file}")

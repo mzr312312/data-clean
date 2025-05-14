@@ -8,7 +8,7 @@ from datetime import datetime
 # 自动在文件路径相同文件夹下，生成带时间戳的新文件“split_时间戳”
 
 # 文件路径
-file_path = r'D:\PycharmProjects\PY\数据处理\06.设备名处理：从第一个中文字开始拆成另一列.xlsx'
+file_path = r'..\..\PY\数据处理\06.设备名处理：从第一个中文字开始拆成另一列.xlsx'
 
 # 读取Excel文件中的特定工作表
 df = pd.read_excel(file_path, sheet_name='设备名处理')
