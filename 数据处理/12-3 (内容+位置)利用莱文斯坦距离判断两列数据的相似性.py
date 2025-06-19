@@ -24,7 +24,7 @@ import Levenshtein as lev
 import datetime
 
 # 读取Excel文件
-input_file = '../../PY/数据处理/12-3 利用莱文斯坦距离判断两列数据的相似性.xlsx'
+input_file = '../PY/数据处理/12-3 利用莱文斯坦距离判断两列数据的相似性.xlsx'
 df = pd.read_excel(input_file)
 
 # 检查列名

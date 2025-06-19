@@ -5,7 +5,7 @@ import openpyxl
 
 
 # 指定需要读取数据的Excel文件的完整路径
-excel_file_path = r"C:\Users\JA085914\Desktop\PY\数据处理\01.合并数据表.xlsx"
+excel_file_path = rf"../PY/数据处理/01.合并数据表.xlsx"
 
 # 读取Excel文件
 with pd.ExcelFile(excel_file_path, engine='openpyxl') as xls:

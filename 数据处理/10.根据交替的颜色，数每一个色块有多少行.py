@@ -9,7 +9,7 @@ from datetime import datetime
 
 # 自定义内容：
 # 1. 输入文件路径
-input_file_path = r"C:\Users\JA085914\Desktop\PY\数据处理\10.根据交替的颜色，数每一个色块有多少行.xlsx"
+input_file_path = r"..\PY\数据处理\10.根据交替的颜色，数每一个色块有多少行.xlsx"
 
 # 2. 输出文件路径--在同一个文件夹里自动生成，带有时间戳
 output_dir = os.path.dirname(input_file_path)

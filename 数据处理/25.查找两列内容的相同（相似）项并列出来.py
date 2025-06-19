@@ -3,7 +3,7 @@ import pandas as pd
 from datetime import datetime
 
 # 输入文件的绝对路径
-input_path = r"D:\PycharmProjects\PY\数据处理\25.查找两列内容的相同（相似）项并列出来.xlsx"
+input_path = r"../PY/数据处理/25.查找两列内容的相同（相似）项并列出来.xlsx"
 
 # 确保输入文件存在
 if not os.path.exists(input_path):

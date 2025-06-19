@@ -34,9 +34,9 @@ from datetime import datetime
 import numpy as np
 
 # 设置待更新的标准字典的文件路径
-existing_standard_dict_file = r'../../PY/数据处理/12.利用标准字典进行字段匹配(莱文斯坦距离)/标准字典（特征字段-数据点映射）.xlsx'
+existing_standard_dict_file = r'..\PY\数据处理\12.利用标准字典进行字段匹配(莱文斯坦距离)\标准字典（特征字段-数据点映射）.xlsx'
 # 设置原料池文件夹路径
-raw_material_folder = r'../../PY/数据处理/12.利用标准字典进行字段匹配(莱文斯坦距离)/原料池'
+raw_material_folder = r'..\PY\数据处理\12.利用标准字典进行字段匹配(莱文斯坦距离)\原料池'
 
 # 指定工作表名称或索引
 worksheet_name_or_index = 0  # index=0,表示是sheet页的index=0，即第一个sheet页

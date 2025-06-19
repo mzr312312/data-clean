@@ -3,7 +3,7 @@ import re
 from datetime import datetime
 
 # 文件路径
-input_file_path = r'D:\PycharmProjects\PY\数据处理\06.设备名处理：从第一个数字开始分列.xlsx'
+input_file_path = r'..\PY\数据处理\06.设备名处理：从第一个数字开始分列.xlsx'
 sheet_name = '分列'
 original_column_name = '把需要分列的内容粘在下面'
 

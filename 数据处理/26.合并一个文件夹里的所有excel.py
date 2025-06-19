@@ -9,10 +9,10 @@ TITLE_ROWS = 2  # <<< 修改这个值来设置标题行数
 script_dir = os.path.dirname(os.path.abspath(__file__))
 
 # 输入文件夹路径（相对路径）
-input_folder = os.path.join(script_dir, '../../PY/数据处理/26.合并本文件夹内的所有数据表')
+input_folder = os.path.join(script_dir, '../PY/数据处理/26.合并本文件夹内的所有数据表')
 
 # 输出文件路径（合并后的Excel）
-output_folder = os.path.join(script_dir, '../../PY/数据处理')
+output_folder = os.path.join(script_dir, '../PY/数据处理')
 timestamp = datetime.now().strftime('%Y%m%d_%H%M%S')
 output_file = os.path.join(output_folder, f'合并文件_{timestamp}.xlsx')
 

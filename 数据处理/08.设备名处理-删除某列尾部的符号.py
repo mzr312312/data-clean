@@ -6,7 +6,7 @@ from datetime import datetime
 # 设定文件路径，sheet_name，列名
 # 自动在文件路径相同文件夹下，生成带时间戳的新文件“删除小尾巴_时间戳”
 # 文件路径
-file_path = r'C:\Users\JA085914\Desktop\临时\PY实验\08.设备名处理-删除某列尾部的符号.xlsx'
+file_path = r'..\PY\数据处理\08.设备名处理-删除某列尾部的符号.xlsx'
 
 # 读取Excel文件中的"实验"sheet
 df = pd.read_excel(file_path, sheet_name='实验')

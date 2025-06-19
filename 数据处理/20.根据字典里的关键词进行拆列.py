@@ -45,7 +45,7 @@ spilt_keyword_1 = [
 ]
 
 # 2）读取源文件，使用相对路径
-source_file_path = "../../PY/数据处理/20.根据字典里的关键词进行拆列.xlsx"
+source_file_path = "../PY/数据处理/20.根据字典里的关键词进行拆列.xlsx"
 df = pd.read_excel(source_file_path)
 
 # 清洗“按关键词拆列”这一列为字符串

@@ -27,7 +27,7 @@ from datetime import datetime
 
 
 # 第1步：读取Excel文件中的数据
-file_path = '../../PY/数据处理/12-2 使用difflib和层次聚类对一组字符串进行分类.xlsx'
+file_path = '../PY/数据处理/12-2 使用difflib和层次聚类对一组字符串进行分类.xlsx'
 df = pd.read_excel(file_path, sheet_name=0)
 strings = df.iloc[:, 0].tolist()  # 获取第一列数据并转为列表
 

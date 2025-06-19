@@ -3,7 +3,7 @@ import time
 import os
 
 # 定义文件路径
-file_path = r'C:\Users\JA085914\Desktop\PY\数据处理\18.把一个sheet页里所有列合并成1列.xlsx'
+file_path = r'..\PY\数据处理\18.把一个sheet页里所有列合并成1列.xlsx'
 output_dir = os.path.dirname(file_path)
 output_file_name = f'合并成1列_{int(time.time())}.xlsx'  # 带时间戳的文件名
 output_path = os.path.join(output_dir, output_file_name)

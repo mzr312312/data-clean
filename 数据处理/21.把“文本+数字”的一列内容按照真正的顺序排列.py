@@ -29,7 +29,7 @@ def natural_sort_key(s):
     return [int(text) if text.isdigit() else text.lower() for text in re.split('(\d+)', s)]
 
 # 读取Excel文件
-input_file_path = r'../../PY/数据处理/21.把“文本+数字”的一列内容按照真正的顺序排列.xlsx'
+input_file_path = r'../PY/数据处理/21.把“文本+数字”的一列内容按照真正的顺序排列.xlsx'
 df = pd.read_excel(input_file_path)
 
 # 假设“需要排列的内容”为数据帧的列名

@@ -5,13 +5,13 @@ from datetime import datetime
 # 详见md文件：15.从一堆参考文件中映射出目标内容.md
 
 # 数据源文件路径
-data_source_path = r'C:\Users\JA085914\Desktop\PY\数据处理\电表全文映射\需要被映射的数据源.xlsx'
+data_source_path = r'..\PY\数据处理\电表全文映射\需要被映射的数据源.xlsx'
 
 # 参考文件路径
 reference_paths = [
-    r'C:\Users\JA085914\Desktop\PY\数据处理\电表全文映射\新-电池车间电表清单.xlsx',
-    r'C:\Users\JA085914\Desktop\PY\数据处理\电表全文映射\新-动力站电表清单.xlsx',
-    r'C:\Users\JA085914\Desktop\PY\数据处理\电表全文映射\新-切片车间电表清单.xlsx'
+    r'..\PY\数据处理\电表全文映射\新-电池车间电表清单.xlsx',
+    r'..\PY\数据处理\电表全文映射\新-动力站电表清单.xlsx',
+    r'..\PY\数据处理\电表全文映射\新-切片车间电表清单.xlsx'
 ]
 
 # 创建一个字典来存储设备名称及其映射名称

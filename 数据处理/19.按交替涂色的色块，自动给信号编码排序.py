@@ -31,10 +31,10 @@ import openpyxl
 
 
 # 文件路径
-file_path = r'../../PY/数据处理/19.按交替涂色的色块，自动给信号编码排序.xlsx'
+file_path = r'../PY/数据处理/19.按交替涂色的色块，自动给信号编码排序.xlsx'
 # 新生成的文件路径
 timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-new_file_path = fr'../../PY/数据处理/数据点编号_{timestamp}.xlsx'
+new_file_path = fr'../PY/数据处理/数据点编号_{timestamp}.xlsx'
 
 # 设置连续空值的最大数量
 max_empty_count = 20000  # 你可以根据需要修改这个值

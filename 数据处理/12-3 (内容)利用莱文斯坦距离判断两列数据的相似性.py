@@ -7,7 +7,7 @@ from collections import Counter
 
 使用方法：
 1. 确保安装了所需的库：pandas、Levenshtein和collections。
-2. 将要对比的Excel文件放在指定路径下。输入文件路径为相对路径：'../../PY/数据处理/12-3 利用莱文斯坦距离判断两列数据的相似性.xlsx'。
+2. 将要对比的Excel文件放在指定路径下。输入文件路径为相对路径：'../PY/数据处理/12-3 利用莱文斯坦距离判断两列数据的相似性.xlsx'。
 3. 确保Excel文件中包含名为“要对比的列1”和“要对比的列2”的列。
 4. 运行脚本，它将自动读取Excel文件，计算相似度评分并保存到新的Excel文件中。
 5. 输出文件的名称将包含时间戳，以确保每次运行都有唯一的文件名，输出文件路径也是相对路径，格式为'../../PY/数据处理/两列数据评分_时间戳.xlsx'。
@@ -27,7 +27,7 @@ from collections import Counter
 """
 
 # 读取Excel文件
-input_file = '../../PY/数据处理/12-3 利用莱文斯坦距离判断两列数据的相似性.xlsx'
+input_file = '../PY/数据处理/12-3 利用莱文斯坦距离判断两列数据的相似性.xlsx'
 df = pd.read_excel(input_file)
 
 # 检查列名

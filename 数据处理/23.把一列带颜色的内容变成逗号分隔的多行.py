@@ -4,8 +4,8 @@ from openpyxl.styles import PatternFill
 from datetime import datetime
 
 # 定义输入文件和输出文件路径
-input_file = r"..\..\PY\数据处理\23.把一列带颜色的内容变成逗号分隔的多行.xlsx"
-output_dir = r"..\..\PY\数据处理"
+input_file = r"..\PY\数据处理\23.把一列带颜色的内容变成逗号分隔的多行.xlsx"
+output_dir = r"..\PY\数据处理"
 
 # 加载工作簿和工作表
 wb = load_workbook(input_file)

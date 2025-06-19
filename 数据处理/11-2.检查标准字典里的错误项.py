@@ -3,7 +3,7 @@ import pandas as pd
 from datetime import datetime
 
 # 设置路径
-standard_dict_file = r'../../PY/数据处理/11.根据已有成果，生成标准字典（特征字段-数据点映射）/标准字典（特征字段-数据点映射）.xlsx'
+standard_dict_file = r'..\PY\数据处理\11.根据已有成果，生成标准字典（特征字段-数据点映射）/标准字典（特征字段-数据点映射）.xlsx'
 output_folder = os.path.dirname(standard_dict_file)
 
 

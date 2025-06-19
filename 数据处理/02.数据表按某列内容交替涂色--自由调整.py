@@ -6,7 +6,7 @@ from datetime import datetime
 # 没有选择sheet页的功能，最好新建一个excel文档，把需要涂色的sheet页拷贝过去
 # 可配置变量
 # Excel文件路径--现有未涂色的文件
-file_path = r'../../PY/数据处理/02.数据表按某列内容交替涂色--自由调整.xlsx'
+file_path = r'../PY/数据处理/02.数据表按某列内容交替涂色--自由调整.xlsx'
 # 新生成的Excel文件路径--新生成的文件
 timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")  # 生成时间戳，格式为：年月日_时分秒
 new_file_path = fr'../../PY/数据处理/涂色文件_{timestamp}.xlsx'

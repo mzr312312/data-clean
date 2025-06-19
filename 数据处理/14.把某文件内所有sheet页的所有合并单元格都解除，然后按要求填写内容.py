@@ -3,7 +3,7 @@ import os
 from datetime import datetime
 
 # 文件路径
-file_path = r'C:\Users\JA085914\Desktop\PY\数据处理\14.把某文件内所有sheet页的所有合并单元格都解除，然后按要求填写内容.xlsx'
+file_path = r'..\PY\数据处理\14.把某文件内所有sheet页的所有合并单元格都解除，然后按要求填写内容.xlsx'
 # 加载工作簿
 workbook = openpyxl.load_workbook(file_path)
 
