@@ -3,7 +3,7 @@ import os
 from datetime import datetime
 
 # 定义输入文件路径和输出文件路径（相对路径）
-input_file = r"../PY/数据处理/24.合并单元格拆开后向下填充.xlsx"
+input_file = r"../../PY/数据处理/24.合并单元格拆开后向下填充.xlsx"
 output_dir = os.path.dirname(input_file)
 
 # 读取 Excel 文件
