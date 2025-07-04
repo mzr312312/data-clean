@@ -6,7 +6,7 @@ from openpyxl.utils.cell import range_boundaries
 from datetime import datetime
 
 # 定义输入文件路径和输出文件路径（相对路径）
-input_file = r"../../PY/数据处理/24-2.向下寻找空格合并单元格.xlsx"
+input_file = r"../PY/数据处理/24-2.向下寻找空格合并单元格.xlsx"
 output_dir = os.path.dirname(input_file)
 
 # 读取 Excel 文件
