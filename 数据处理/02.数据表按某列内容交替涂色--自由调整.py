@@ -9,7 +9,7 @@ from datetime import datetime
 file_path = r'../PY/数据处理/02.数据表按某列内容交替涂色--自由调整.xlsx'
 # 新生成的Excel文件路径--新生成的文件
 timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")  # 生成时间戳，格式为：年月日_时分秒
-new_file_path = fr'../../PY/数据处理/涂色文件_{timestamp}.xlsx'
+new_file_path = fr'../PY/数据处理/涂色文件_{timestamp}.xlsx'
 # 设置颜色--用Quicker取色即可
 # 随便设置一个颜色就行，后面还要用excel，按某一列的颜色排序后，把所有颜色都改成正经颜色
 start_color = 'FFEBF1DE'  # 绿色
